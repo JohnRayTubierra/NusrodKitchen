@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUSROD KITCHEN - Your Trusted Sari-Sari Store</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #CE1126;
+            --blue: #0038A8;
+            --yellow: #FCD116;
+            --white: #FFFFFF;
+            --cream: #FFF8E7;
+            --dark: #2C3E50;
+            --orange: #FF6B35;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Jeepney Pattern Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(252, 209, 22, 0.03) 35px,
+                    rgba(252, 209, 22, 0.03) 70px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(206, 17, 38, 0.02) 35px,
+                    rgba(206, 17, 38, 0.02) 70px
+                );
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header with Jeepney Style */
+        header {
+            background: linear-gradient(135deg, var(--red) 0%, var(--orange) 50%, var(--yellow) 100%);
+            color: var(--white);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 8px solid var(--blue);
+        }
+
+        /* Chrome strips like jeepney */
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--white) 0px,
+                var(--white) 20px,
+                transparent 20px,
+                transparent 40px
+            );
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 3px dotted var(--yellow);
+        }
+
+        /* Filipino Star Logo */
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: var(--yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 5px solid var(--white);
+            box-shadow: 0 0 20px rgba(252, 209, 22, 0.6),
+                        inset 0 0 20px rgba(206, 17, 38, 0.3);
+            position: relative;
+        }
+
+        .logo::before {
+            content: '⭐';
+            position: absolute;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .brand {
+            flex: 1;
+        }
+
+        .brand h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .brand p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+
+        /* Jeepney-style Navigation */
+        nav {
+            background: var(--blue);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--yellow) 0px,
+                var(--yellow) 15px,
+                var(--red) 15px,
+                var(--red) 30px
+            );
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 0 3rem;
+        }
+
+        nav li {
+            flex: 1;
+            text-align: center;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        nav li:last-child {
+            border-right: none;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 1.2rem 2rem;
+            display: block;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 4px;
+            background: var(--yellow);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(252, 209, 22, 0.2);
+            color: var(--yellow);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 80%;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+
+        section {
+            display: none;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section - Jeepney inspired */
+        .hero {
+            background: linear-gradient(135deg, var(--red) 0%, var(--orange) 50%, var(--yellow) 100%);
+            color: var(--white);
+            padding: 5rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border: 6px solid var(--blue);
+        }
+
+        /* Chrome decorations */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 3px dashed var(--white);
+            border-radius: 15px;
+            opacity: 0.3;
+        }
+
+        .hero::after {
+            content: '🇵🇭';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .flag-emoji {
+            font-size: 3rem;
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+
+        /* Featured Products - Banig Pattern */
+        .featured-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+            transition: all 0.4s;
+            border: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--red), var(--yellow), var(--blue));
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(206, 17, 38, 0.3);
+            border-color: var(--yellow);
+        }
+
+        .product-icon {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .product-card h3 {
+            color: var(--red);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .product-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Section Headers */
+        h2 {
+            color: var(--blue);
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--red), var(--yellow), var(--blue));
+            border-radius: 10px;
+        }
+
+        /* Promo Banner - Parol inspired */
+        .promo-banner {
+            background: linear-gradient(135deg, var(--yellow) 0%, #FFE57F 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            border: 5px dashed var(--red);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2),
+                        inset 0 0 30px rgba(206, 17, 38, 0.1);
+            position: relative;
+        }
+
+        .promo-banner::before {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        .promo-banner::after {
+            content: '✨';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 3rem;
+            animation: sparkle 1.5s ease-in-out infinite 0.75s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .promo-banner h3 {
+            color: var(--red);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .promo-banner p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        /* About Section */
+        .about-content {
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-left: 10px solid var(--red);
+            border-right: 10px solid var(--blue);
+        }
+
+        .about-content p {
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        /* Values Grid - Bahay Kubo style */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--yellow) 0%, #FFE57F 100%);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 4px solid var(--white);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+        }
+
+        .value-card h3 {
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .value-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--dark);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .product-item {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-top: 6px solid var(--red);
+            transition: all 0.3s;
+        }
+
+        .product-item:hover {
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+        .product-item h3 {
+            color: var(--red);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-item ul {
+            list-style: none;
+        }
+
+        .product-item li {
+            padding: 0.8rem 0;
+            border-bottom: 2px dotted #ddd;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .product-item li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-weight: bold;
+        }
+
+        .product-item li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info, .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            border-left: 8px solid var(--red);
+        }
+
+        .contact-form {
+            border-left: 8px solid var(--blue);
+        }
+
+        .contact-info h3, .contact-form h3 {
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(252, 209, 22, 0.1);
+            border-radius: 10px;
+        }
+
+        .contact-item strong {
+            color: var(--red);
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 3px dashed var(--blue);
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        form input:focus, form textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 15px rgba(0, 56, 168, 0.2);
+        }
+
+        form button {
+            background: linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(206, 17, 38, 0.3);
+            width: 100%;
+        }
+
+        form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(206, 17, 38, 0.5);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid var(--yellow);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--yellow);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a252f 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem;
+            margin-top: 5rem;
+            border-top: 8px solid var(--yellow);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--red) 0px,
+                var(--red) 20px,
+                var(--blue) 20px,
+                var(--blue) 40px,
+                var(--yellow) 40px,
+                var(--yellow) 60px
+            );
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 1.05rem;
+        }
+
+        footer strong {
+            font-size: 1.3rem;
+            color: var(--yellow);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 4px solid var(--yellow);
+            margin-top: 3rem;
+        }
+
+        .info-box h3 {
+            color: var(--red);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .info-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0.5rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .logo-section {
+                padding: 1rem 1.5rem;
+            }
+
+            .brand h1 {
+                font-size: 1.8rem;
+            }
+
+            .brand p {
+                font-size: 0.9rem;
+            }
+
+            nav ul {
+                padding: 0 1rem;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            main {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 2rem;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-products, .products-grid, .values-grid, .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                padding: 2rem;
+            }
+            .embed-map-fixed {
+    position: relative;
+    text-align: right;
+    width: 600px;
+    height: 400px;
+}
+
+.embed-map-container {
+    overflow: hidden;
+    background: none !important;
+    width: 600px;
+    height: 400px;
+}
+
+.embed-map-frame {
+    width: 600px !important;
+    height: 400px !important;
+}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-section">
+            <div class="logo"></div>
+            <div class="brand">
+                <h1>Nusrod Kitchen</h1>
+                <p>"Dito lang sa Maharlika<samp></samp>!"</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <section id="home" class="active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h2> Sulit na sulit ka dito! 🎉</h2>
+                    <p></p>
+                    <p> Pupunta kang gutom, uuwi kang busog!</p>
+                </div>
+            </div>
+
+            <div class="promo-banner">
+                <h3>🎉 Special Promo! 🎉</h3>
+                <p><strong> Unlimited Pastil:</strong> For only ₱79 + 1 Free Softdrinks! </p>
+                <p><strong>Sizzling Sulit ComboL: </strong> Sizzling + Rice + Drink for only ₱99! </p>
+                <p><em> Hindi na muling mabubutas ang iyong bulsa!</em></p>
+            </div>
+
+            <h2>Featured Products</h2>
+            <div class="featured-products">
+                <div class="product-card">
+                    <h3>Pastil</h3>
+                    <p> Chicken pastil gawa ng Pusong Maguindanao! </p>
+                </div>
+                <div class="product-card">
+                    <h3>Sizzling Dishes</h3>
+                    <p> Chicken sisig na pumuputok putok at Burger steak na nag uumapaw sa gravy!</p>
+                </div>
+                <div class="product-card">
+                    <h3> Snacks and Milkshakes </h3>
+                    <p>Cheesesticks, shanghai, Nachos and Fries + Milkshakes na sulit na sulit pang pamilya man o barkada!</p> 
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem;">
+                <h2>Ang Sabi ng Aming mga Suki</h2>
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <p>Napakaswerte namin na malapit kami sa Nusrod Kitchen! Di lang pang almusal kundi pang meryenda at hapunan!</p>
+                        <div class="testimonial-author">- Klong, Regular Customer / Kapitbahay </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>Best Kainan sa Maharlika! Kumpleto ang mga gusto kong pagkain. Tapos mura pa compared sa ibang kainan!</p>
+                        <div class="testimonial-author">- Justine, Regular Customer</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>Salamat sa Nusrod Kitchen, kahit bitin sa budget ay nararaos ko ang araw ko at nakakain ko ang mga gusto ko!</p>
+                        <div class="testimonial-author">- Bambi, Studyante</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="about">
+            <div class="about-content">
+                <h2>Ang Kuwento ng Nusrod Kitchen </h2>
+                
+                <p>Noong 2022, nagsimula ang Nusrod Kitchen sa isang maliit na tindahan sa harap ng bahay nila sa Taguig City. Nais ni Aling Rosa na makatulong sa kanyang mga kapitbahay na makabili ng pangangailangan nila nang hindi na kailangang lumayo pa.</p>
+
+                <p>Sa loob ng 3 taon, naging bahagi na ng komunidad ang tindahan. Hindi lamang ito simpleng negosyo - ito ay sentro ng bayanihan, pagkakaibigan, at suporta sa isa't isa. Dito nagsisimula ang mga kuwentuhan ng kapitbahay, nagtatapos ang emergency midnight cravings, at nagsisimula ang mga araw ng mga batang bumibili ng kanilang candy money.</p>
+
+                <p>Ang tindahan ay naging saksi ng mga pagdiriwang, mga hamon, at mga tagumpay ng komunidad. Mula sa simpleng pamimili ng asin hanggang sa malaking order para sa handaan, nandito kami para sa inyo.</p>
+
+                <h3 style="color: var(--red); margin-top: 3rem; margin-bottom: 1.5rem; text-align: center; font-size: 2rem;">Ang Aming Paninindigan</h3>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>🤝 Bayanihan Spirit</h3>
+                        <p>Tumutulong sa kapwa. May suki card system at pwedeng hulugan kung kinulang sa bayad. Magkakasama tayo sa hirap at ginhawa!</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>💰 Tingi Culture</h3>
+                        <p>Mula sa isang pirasong kendi hanggang isang sachet lang ng shampoo - bahala na kayo sa size! Walang masyadong maliit na bili para sa amin.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>🏘️ Community Connection</h3>
+                        <p>Hindi ka customer lang, pamilya ka namin. Kilala namin ang pangalan mo at paboritong binibili mo! Dito ka bahay!</p>
+                    </div>
+                </div>
+
+                <p style="font-size: 1.3rem; line-height: 2; margin-top: 3rem; font-style: italic; text-align: center; color: var(--blue); font-weight: 600; background: rgba(252, 209, 22, 0.2); padding: 2rem; border-radius: 15px;">
+                    "Sa Tindahan ni Aling Rosa, hindi ka bumibili lang - umuuwi ka sa bahay ng isang kaibigan."
+                </p>
+            </div>
+        </section>
+
+        <!-- PRODUCTS PAGE -->
+        <section id="products">
+            <h2>NUSROD Kitchen Menu</h2>
+            <div class="products-grid">
+                <div class="product-item">
+                    <h3>🍪 Snacks & Biscuits</h3>
+                    <ul>
+                        <li>Skyflakes, Fita, Rebisco crackers</li>
+                        <li>Chippy, Piatos, Clover chips</li>
+                        <li>Oishi snacks (all variants)</li>
+                        <li>Nissin wafer sticks</li>
+                        <li>Imported Korean/Japanese snacks</li>
+                        <li>Boy Bawang, KSK nuts</li>
+                    </ul>
+                </div>
+
+                <div class="product-item">
+                    <h3>🍬 Candies & Sweets</h3>
+                    <ul>
+                        <li>Stick-O, Mik-Mik, Choco Mucho</li>
+                        <li>Mentos, Halls, Dynamite candies</li>
+                        <li>White Rabbit, Milky candies</li>
+                        <li>Yema balls, polvoron</li>
+                        <li>Chewing gum (all brands)</li>
+                        <li>Cotton candies & lollipops</li>
+                    </ul>
+                </div>
+
+                <div class="product-item">
+                    <h3>🥫 Canned Goods</h3>
+                    <ul>
+                        <li>Argentina, Purefoods corned beef</li>
+                        <li>Century tuna, sardines</li>
+                        <li>555, Mega, Ligo sardines</li>
+                        <li>Spam, Pork & beans</li>
+                        <li>Young's Town, CDO meats</li>
+                        <li>Milk (evaporated, condensed)</li>
+                    </ul>
+                </div>
+
+                <div class="product-item">
+                    <h3>🥤 Beverages</h3>
+                    <ul>
+                        <li>Coke, Sprite, Royal soft drinks</li>
+                        <li>C2, Zest-O, Minute Maid juices</li>
+                        <li>Gatorade, Pocari sports drinks</li>
+                        <li>Coffee (3-in-1 all brands)</li>
+                        <li>Fresh buko juice</li>
+                        <li>Ice-cold drinks available!</li>
+                    </ul>
+                </div>
+
+                <div class="product-item">
+                    <h3>🍚 Specialties</h3>
+                    <ul>
+                        <li>Pastil Maguindanaon (Chicken Pastil)</li>
+                        <li>Sizzling dishes</li> 
+                        <li>Milkshakes & Snacks</li>
+                        <li>Cheese Stick Overload</li> 
+                        <li>Tacos Cheese Overload</li> 
+                        <li>Shanghai Overload</li>
+                    </ul>
+                </div>
+
+                <div class="product-item">
+                    <h3>🧴 Home & Personal Care</h3>
+                    <ul>
+                        <li>Shampoo (Rejoice, Palmolive, Cream Silk)</li>
+                        <li>Soap (Safeguard, Dove, Perla)</li>
+                        <li>Toothpaste, toothbrush</li>
+                        <li>Laundry detergent (Tide, Surf)</li>
+                        <li>Dishwashing liquid</li>
+                        <li>Toilet paper, sanitary napkins</li>
+                    </ul>
+                </div>
+
+                <div class="product-item">
+                    <h3>🥚 Fresh Goods</h3>
+                    <ul>
+                        <li>Fresh eggs (per piece available)</li>
+                        <li>Pandesal (delivered daily 6am)</li>
+                        <li>Fresh vegetables (seasonal)</li>
+                        <li>Cooking oil (by bottle/sachet)</li>
+                        <li>Suka, toyo, patis, bagoong</li>
+                        <li>Mantika, lard</li>
+                    </ul>
+                </div>
+
+                <div class="product-item">
+                    <h3>📱 Services</h3>
+                    <ul>
+                        <li><strong>E-Load:</strong> All networks instant</li>
+                        <li><strong>Bills Payment:</strong> Water, electric</li>
+                        <li><strong>Ice:</strong> Per bag or per uso</li>
+                        <li><strong>Package receiving:</strong> For neighbors</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="promo-banner" style="margin-top: 4rem;">
+                <h3>💡 Tingi System Available!</h3>
+                <p style="font-size: 1.2rem;">Wala pa sweldo? Walang problema! May tingi system kami para sa lahat ng budget!</p>
+                <p style="font-size: 1.3rem; font-weight: 700; margin-top: 1rem;"><strong>Kape, asukal, mantika, shampoo, toothpaste - lahat pwede tingi!</strong></p>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact">
+            <h2>Bisitahin Kami o Makipag-ugnayan</h2>
+            <p style="margin-bottom: 3rem; font-size: 1.2rem; text-align: center; color: var(--dark);">Bukas kami araw-araw para sa inyo! Dalhin ang buong pamilya!</p>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 style="color: var(--red); margin-bottom: 2rem;">📍 Store Information</h3>
+                    
+                    <div class="contact-item">
+                        <strong>🏠 Address:</strong>
+                        <p>123 Maharlika Street, Barangay Western Bicutan<br>
+                        Taguig City, Metro Manila 1630</p>
+                        <p><em>(Near Condominium Maharlika Village)</em></p>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>📞 Contact Number:</strong>
+                        <p>+63 917 123 4567</p>
+                        <p><em>For orders & inquiries: Text lang, sagot agad!</em></p>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>📱 Facebook Page:</strong>
+                        <p>https://www.facebook.com/profile.php?id=100088242938532</p>
+                        <p><em>Like & Follow for daily promos!</em></p>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>🕐 Store Hours:</strong>
+                        <p>Monday - Sunday: 7:00 PM - 12:00 PM</p>
+                        <p><em>Minsan open pa ng midnight kung may kumatok! 😊</em></p>
+                    </div>
+
+                    <div class="map-placeholder">
+    <p style="font-size: 1.5rem; margin-bottom: 1rem;">📍 <strong>Google Maps Location</strong></p>
+    <p style="font-size: 1.1rem;">Search: "Nusrod Kitchen"</p>
+
+    <!-- Embedded Google Map -->
+    <div class="embed-map-fixed">
+        <div class="embed-map-container">
+            <iframe class="embed-map-frame" 
+                frameborder="0" 
+                scrolling="no" 
+                marginheight="0" 
+                marginwidth="0"
+                src="https://maps.google.com/maps?width=600&height=400&hl=en&q=NUSROD%20KITCHEN&t=&z=14&ie=UTF8&iwloc=B&output=embed">
+            </iframe>
+        </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 1rem; color: #666;">
+        <em>Embedded map shows exact pinpoint location<br>
+        Near Condominium Maharlika Village</em>
+    </p>
+</div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="color: var(--blue); margin-bottom: 2rem;">✉️ Send Us a Message</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="tel" placeholder="Contact Number">
+                        <textarea rows="5" placeholder="Your Message or Order" required></textarea>
+                        <button type="submit">Send Message 📨</button>
+                    </form>
+                    <p style="margin-top: 1.5rem; font-size: 1rem; color: #666; text-align: center;">
+                        <em>Or just text us directly! Mas mabilis pa! 😊</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>🚗 Easy to Find!</h3>
+                <p style="font-size: 1.15rem;">
+                    <strong>Landmarks:</strong> Near Condominium Maharlika Village, 
+                    along Maharlika Street. May maliit na signage "Nusrod Kitchen" in front!
+                </p>
+                <p style="margin-top: 1.5rem; font-size: 1.1rem;">
+                    <strong>Parking:</strong> May parking space sa tapat for 2-3 vehicles<br>
+                    <strong>Delivery:</strong> Available within Barangay Maharlika Village (minimum order ₱200)
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Nusrod Kitchen</strong></p>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">Serving Taguig with Love Since 2022 ❤️</p>
+        <p style="margin-top: 1.5rem; font-size: 1.1rem; font-style: italic;">"Malapit, Mura, Mabilis - "Yan ang Nusrod Kitchen!</p>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">© 2025 Nusrod Kitchen. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                navLinks.forEach(l => l.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Show corresponding section
+                const targetId = link.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+                
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Salamat sa inyong mensahe! Tutugon kami sa lalong madaling panahon. Maraming salamat! 🙏');
+            e.target.reset();
+        });
+
+        // Add smooth scrolling behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>
